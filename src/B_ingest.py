@@ -1,21 +1,22 @@
+import config
 import ollama
 import chromadb
-import pypdf
 import re
 
 cli = chromadb.PersistentClient(path="./.chroma")
 collection = cli.get_or_create_collection(name="curricula")
 
 # read_pdf() takes in a relative path to a pdf file to extract text per page via pypdf.
-def read_pdf(path):
-    pdf = pypdf.PdfReader(path)
-    pages_data = []
+# def read_pdf(path):
+#     pdf = pypdf.PdfReader(path)
+#     pages_data = []
 
-    for i, page in enumerate(pdf.pages):
-        content = page.extract_text()
-        if content:
-            pages_data.append({"text": content, "page": i+1})
-    return pages_data
+#     for i, page in enumerate(pdf.pages):
+#         content = page.extract_text()
+#         if content:
+#             pages_data.append({"text": content, "page": i+1})
+#     return pages_data
+
 
 # chunk_text() takes a list of dictionaries in the format [{"text":str, "page":int}, ...]
 #   and returns chunks of <500 characters of full sentences in the same format /\
