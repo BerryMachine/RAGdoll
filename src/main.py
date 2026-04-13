@@ -34,9 +34,9 @@ def prompt_engineering(user_input: str, course: str):
     
     Rules:
     - If the answer isn't in the context, say you don't know based on the notes.
-    - Be concise!
+    - Be concise! Speak English unless asked otherwise.
     - Use LaTeX for any mathematical formulas.
-    - ALWAYS cite which document the information came from.
+    - ALWAYS cite which document the information came from and which pages.
     
     Context:
     {context_text}
@@ -44,7 +44,7 @@ def prompt_engineering(user_input: str, course: str):
 
     print("--- SUCCESS 2 ---")
     print()
-    print("3. Generating Response... ({model})")
+    print(f"3. Generating Response... ({model})")
 
     # We use stream=True for that cool "typing" effect
     response = ollama.generate(

@@ -1,6 +1,7 @@
 import config
 import subprocess
 import os
+import re
 
 #TODO: fix md reader
 
@@ -26,7 +27,7 @@ def pdf_to_md(path):
     return output_path
 
 def parse_paginated_md(path):
-    with open(md_path, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8") as f:
         content = f.read()
 
     # Marker's default pagination format is usually: \n\n{PAGE_NUMBER}\n------------------------------------------------\n\n
@@ -45,5 +46,5 @@ def parse_paginated_md(path):
 
 # TESTING
 if __name__ == "__main__":
-    path = "./docs/MATH138_pages.pdf"
+    path = "./docs/CS136_Makefile.pdf"
     pdf_to_md(path)

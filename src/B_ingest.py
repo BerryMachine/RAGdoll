@@ -2,6 +2,7 @@ import config
 import ollama
 import chromadb
 import re
+from A_read_source import parse_paginated_md
 
 cli = chromadb.PersistentClient(path="./.chroma")
 collection = cli.get_or_create_collection(name="curricula")
@@ -120,11 +121,11 @@ def add_to_db(chunks, source_name, course):
     )
 
 if __name__ == "__main__":
-    target_file = "docs/CS136_StyleGuide.pdf"
-    source_name = "CS136_Style_Guide"
-    course = "CS136"
+    target_file = "docs/MATH138_pages/MATH138_pages.md"
+    source_name = "MATH138_test"
+    course = "MATH138"
     
-    raw_text = read_pdf(target_file)
+    raw_text = parse_paginated_md(target_file)
     text_chunks = chunk_text(raw_text)
     add_to_db(text_chunks, source_name, course)
     

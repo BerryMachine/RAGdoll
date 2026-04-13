@@ -5,7 +5,7 @@ Embedding: bge-m3 (ollama)
 
 
 ## IMPORTANT NOTES
-chromadb's PersistentClient() is not compatible python@3.14+, specifically the config.py .
+**#1** chromadb's PersistentClient() is not compatible python@3.14+, specifically the config.py .
 To fix this, I...
 1. Used ModuleNotFoundError instead of ImportError (line 17)
 2. Added fallback to pydantic_settings
@@ -29,3 +29,10 @@ Additional dependencies required for this fix include:
 
 Refer to the following 
 https://github.com/chroma-core/chroma/issues/5996
+
+**#2** marker-pdf is much slower on v1.9.0+ for Mac .
+Seems to be related to the warning: 
+```[WARNING] surya: `TableRecEncoderDecoderModel` is not compatible with mps backend. Defaulting to cpu instead.```
+which forces the use of CPU instead of Mac's MPS.
+The fix was to downgrade to 1.8.0:
+```pip install marker==1.8.0```
